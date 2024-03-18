@@ -1,66 +1,25 @@
-import "./App.css"
-import { Counter } from "./features/counter/Counter"
-import { Quotes } from "./features/quotes/Quotes"
-import logo from "./logo.svg"
+import type React from 'react'
+import { useState } from 'react'
+import { useGetAllCharactersQuery, useSearchCharactersByNameQuery } from './redux'
+import CharactersList from './components/characterList/CharacterList'
+import SearchBar from './components/searchBar/SearchBar'
 
-const App = () => {
+const App: React.FC = () => {
+  const [searchState, setSearchState] = useState('')
+  const { data, error, isLoading } = useGetAllCharactersQuery({ page: 1 })
+  const { data: searchData, error: searchError, isLoading: searchLoading } = useSearchCharactersByNameQuery(searchState)
+  const characters = searchState ? searchData?.results : data?.results
+
+  const handleChange = (value: string) => {
+    setSearchState(value)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <Quotes />
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://reselect.js.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Reselect
-          </a>
-        </span>
-      </header>
+    <div>
+      <SearchBar value={searchState} onChange={handleChange} />
+      {(isLoading || searchLoading) && <p>Загрузка...</p>}
+      {(error || searchError) && <p>Ошибка загрузки данных. Попробуйте обновить страницу или попробовать позже</p>}
+      {characters && <CharactersList characters={characters} />}
     </div>
   )
 }
