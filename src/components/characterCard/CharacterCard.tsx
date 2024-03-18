@@ -1,11 +1,11 @@
-import type React from 'react'
-import type { ICharacter } from '../../utils/types'
-
-interface CharacterCardProps {
-  character: ICharacter
+type CharacterCardProps = {
+  character: {
+    name: string
+    image: string
+  }
 }
 
-const CharacterCard: React.FC<CharacterCardProps> = ({ character }) => {
+const CharacterCard = ({ character }: CharacterCardProps) => {
   return (
     <li>
       {character.name}
