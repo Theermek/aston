@@ -7,11 +7,10 @@ export const rickApi = createApi({
     getAllCharacters: builder.query({
       query: () => 'character/',
     }),
-    searchCharactersByName: builder.query({
+    getFilteredCharactersByName: builder.query({
       query: (name: string) => `character/?name=${name}`,
     }),
   }),
 })
 
-export const { useGetAllCharactersQuery, useSearchCharactersByNameQuery } =
-  rickApi
+export const { useGetAllCharactersQuery, useGetFilteredCharactersByNameQuery } = rickApi

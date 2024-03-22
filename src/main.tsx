@@ -1,8 +1,11 @@
 import App from './App'
 import { createRoot } from 'react-dom/client'
 import { Provider } from 'react-redux'
-import { store } from './redux'
+import { store } from './store'
 import './index.css'
+import { BrowserRouter } from 'react-router-dom'
+import React from 'react'
+import './utils/firebase'
 
 const container = document.getElementById('root')
 
@@ -10,8 +13,13 @@ if (container) {
   const root = createRoot(container)
 
   root.render(
-    <Provider store={store}>
-      <App />
-    </Provider>,
+    <React.StrictMode>
+      <BrowserRouter>
+        <Provider store={store}>
+          <App />
+        </Provider>
+      </BrowserRouter>
+      ,
+    </React.StrictMode>,
   )
 }
