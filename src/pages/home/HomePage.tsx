@@ -10,12 +10,10 @@ const HomePage = () => {
   }
 
   return (
-    <>
-      <div>
-        <Header searchState={searchState} onChange={handleChange} />
-        <Main searchState={searchState} />
-      </div>
-    </>
+    <div>
+      <Header searchState={searchState} onChange={handleChange} />
+      <Main searchState={searchState} />
+    </div>
   )
 }
 
