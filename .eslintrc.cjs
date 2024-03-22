@@ -1,9 +1,8 @@
-const module = require('module')
-
 module.exports = {
   env: {
     browser: true,
     es2021: true,
+    node: true,
   },
   extends: [
     'eslint:recommended',
@@ -16,7 +15,7 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   settings: {
     react: {
-      version: 'detect', // Tells eslint-plugin-react to automatically detect the version of React to use
+      version: 'detect',
     },
   },
   plugins: ['@typescript-eslint', 'react', 'import'],
