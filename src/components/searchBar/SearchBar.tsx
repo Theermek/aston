@@ -1,7 +1,7 @@
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom' // Импорт useHistory для перенаправления
+import { useNavigate } from 'react-router-dom'
 
 type SearchBarProps = {
   value: string
@@ -10,7 +10,7 @@ type SearchBarProps = {
 
 const SearchBar = ({ value, onChange }: SearchBarProps) => {
   const [inputValue, setInputValue] = useState(value)
-  const navigate = useNavigate() // Инициализация useHistory
+  const navigate = useNavigate()
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value)
@@ -18,7 +18,6 @@ const SearchBar = ({ value, onChange }: SearchBarProps) => {
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
-      // При нажатии Enter перенаправляем на страницу поиска с параметрами запроса
       if (inputValue.trim() !== '') {
         navigate(`/search?name=${encodeURIComponent(inputValue)}`)
       }
@@ -26,7 +25,6 @@ const SearchBar = ({ value, onChange }: SearchBarProps) => {
   }
 
   const handleIconClick = () => {
-    // При клике на иконку поиска также перенаправляем на страницу поиска с параметрами запроса
     if (inputValue.trim() !== '') {
       navigate(`/search?name=${encodeURIComponent(inputValue)}`)
     }
@@ -41,7 +39,7 @@ const SearchBar = ({ value, onChange }: SearchBarProps) => {
           placeholder="Введите имя персонажа"
           value={inputValue}
           onChange={handleChange}
-          onKeyDown={handleKeyPress} // Убрана проверка на Enter, так как она есть в handleKeyPress
+          onKeyDown={handleKeyPress}
         />
         <FontAwesomeIcon
           className="absolute top-5 right-1 cursor-pointer text-gray-200"

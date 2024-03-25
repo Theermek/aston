@@ -23,10 +23,9 @@ const Header = () => {
             <button onClick={() => dispatch(removeUser())}>Выход</button>
           </nav>
         ) : (
-          // Если пользователь не авторизован
           <nav>
-            <NavLink to="/login">Вход</NavLink> {/* Кнопка "Вход" */}
-            <NavLink to="/register">Регистрация</NavLink> {/* Кнопка "Регистрация" */}
+            <NavLink to="/login">Вход</NavLink>
+            <NavLink to="/register">Регистрация</NavLink>
           </nav>
         )}
       </div>
