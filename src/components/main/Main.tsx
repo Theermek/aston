@@ -1,7 +1,10 @@
+import { useState } from 'react'
+import SearchBar from '../searchBar/SearchBar'
 import { useGetAllCharactersQuery, useGetFilteredCharactersByNameQuery } from '../../store/rickApi'
-import CharactersList from '../../components/characterList/CharacterList'
+import CharactersList from '../characterList/CharacterList'
 
-const Main = ({ searchState }: { searchState: string }) => {
+const Main = () => {
+  const [searchState, setSearchState] = useState('')
   const {
     data: allCharacters,
     error: allCharactersError,
@@ -14,14 +17,19 @@ const Main = ({ searchState }: { searchState: string }) => {
   } = useGetFilteredCharactersByNameQuery(searchState)
   const characters = searchState ? filteredCharacters?.results : allCharacters?.results
 
+  const handleChange = (value: string) => {
+    setSearchState(value)
+  }
+
   return (
-    <main>
+    <div>
+      <SearchBar value={searchState} onChange={handleChange} />
       {(allCharactersLoading || filteredLoading) && <p>Загрузка...</p>}
       {(allCharactersError || filteredError) && (
         <p>Ошибка загрузки данных. Попробуйте обновить страницу или попробовать позже</p>
       )}
       {characters && <CharactersList characters={characters} />}
-    </main>
+    </div>
   )
 }
 

@@ -10,18 +10,16 @@ const Register = () => {
 
   const handleRegister = (email: string, password: string) => {
     const auth = getAuth()
-    createUserWithEmailAndPassword(auth, email, password)
-      .then(({ user }) => {
-        dispatch(
-          setUser({
-            email: user.email,
-            id: user.uid,
-            token: user.refreshToken,
-          }),
-        )
-        navigate('/')
-      })
-      .catch(console.error)
+    createUserWithEmailAndPassword(auth, email, password).then(({ user }) => {
+      dispatch(
+        setUser({
+          email: user.email,
+          id: user.uid,
+          token: user.refreshToken,
+        }),
+      )
+      navigate('/')
+    })
   }
 
   return <Form title="register" handleClick={handleRegister} />

@@ -12,9 +12,8 @@ type CharactersListProps = {
 
 const CharactersList = ({ characters }: CharactersListProps) => {
   return (
-    <div>
-      <h2>Персонажи:</h2>
-      <ul>
+    <div className=" bg-slate-200 flex justify-center">
+      <ul className=" flex flex-wrap justify-center w-3/4">
         {characters.map(character => (
           <CharacterCard key={character.id} character={character} />
         ))}
