@@ -1,7 +1,7 @@
 import { useLocation } from 'react-router-dom'
-import { useGetFilteredCharactersByNameQuery } from '../../store/rickApi'
-import CharacterList from '../../components/characterList/CharacterList'
-import SearchBar from '../../components/searchBar/SearchBar'
+import { useGetFilteredCharactersByNameQuery } from '../store/rickApi'
+import CharacterList from '../components/CharacterList'
+import SearchBar from '../components/SearchBar'
 
 const SearchPage = () => {
   const location = useLocation()

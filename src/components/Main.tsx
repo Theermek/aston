@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import SearchBar from '../searchBar/SearchBar'
-import { useGetAllCharactersQuery, useGetFilteredCharactersByNameQuery } from '../../store/rickApi'
-import CharactersList from '../characterList/CharacterList'
+import SearchBar from './SearchBar'
+import { useGetAllCharactersQuery, useGetFilteredCharactersByNameQuery } from '../store/rickApi'
+import CharactersList from './CharacterList'
 
 const Main = () => {
   const [searchState, setSearchState] = useState('')

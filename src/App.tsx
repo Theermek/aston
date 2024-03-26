@@ -1,18 +1,19 @@
-// App.tsx
 import { Route, Routes } from 'react-router-dom'
-import Layout from './components/layout/Layout'
-import HomePage from './pages/home/HomePage'
-import LoginPage from './pages/login/LoginPage'
-import RegisterPage from './pages/register/RegisterPage'
-import FavoritesPage from './pages/favorites/FavoritesPage'
-import HistoryPage from './pages/history/HistoryPage'
-import ErrorPage from './pages/error/ErrorPage'
-import SearchPage from './pages/search/SearchPage'
+import Layout from './components/Layout'
+import HomePage from './pages/HomePage'
+import LoginPage from './pages/LoginPage'
+import RegisterPage from './pages/RegisterPage'
+import FavoritesPage from './pages/FavoritesPage'
+import HistoryPage from './pages/HistoryPage'
+import ErrorPage from './pages/ErrorPage'
+import SearchPage from './pages/SearchPage'
+import CharacterDetailsPage from './pages/CharacterDetailsPage'
 
 function App() {
   return (
     <Layout>
       <Routes>
+        <Route path="/characters/:id" element={<CharacterDetailsPage />} />
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
