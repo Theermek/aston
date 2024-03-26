@@ -4,7 +4,13 @@ import { useGetCharacterByIdQuery } from '../store/rickApi'
 
 const CharacterDetailsPage: React.FC = () => {
   const { id } = useParams<{ id: string }>()
-  const { data: character, error, isLoading } = useGetCharacterByIdQuery(id || '')
+  const {
+    data: character,
+    error,
+    isLoading,
+  } = useGetCharacterByIdQuery(id || '', {
+    skip: !id,
+  })
 
   if (isLoading) {
     return <p>Loading...</p>
