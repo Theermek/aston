@@ -8,7 +8,7 @@ type SearchBarProps = {
   onChange: (value: string) => void
 }
 
-const SearchBar = ({ value, onChange }: SearchBarProps) => {
+const SearchBar = ({ value }: SearchBarProps) => {
   const [inputValue, setInputValue] = useState(value)
   const navigate = useNavigate()
 
@@ -18,18 +18,21 @@ const SearchBar = ({ value, onChange }: SearchBarProps) => {
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
-      if (inputValue.trim() !== '') {
-        navigate(`/search?name=${encodeURIComponent(inputValue)}`)
-      }
+      handleSearch()
     }
   }
 
   const handleIconClick = () => {
-    if (inputValue.trim() !== '') {
+    handleSearch()
+  }
+
+  const handleSearch = () => {
+    if (inputValue.trim() === '') {
+      navigate('/search')
+    } else {
       navigate(`/search?name=${encodeURIComponent(inputValue)}`)
     }
   }
-
   return (
     <div className="bg-slate-200 flex justify-center">
       <div className="w-1/4 relative">

@@ -1,12 +1,27 @@
 import { Link, NavLink } from 'react-router-dom'
-import { useAuth } from '../hooks/useAuth'
-import { removeUser } from '../store/slices/userSlice'
-import { useAppDispatch } from '../hooks/reduxHooks'
+import { User, signOut } from 'firebase/auth'
+import { auth } from '../utils/firebase'
+import { useEffect, useState } from 'react'
 import logo from '../assets/images/logo.png'
 
 const Header = () => {
-  const dispatch = useAppDispatch()
-  const { isAuth } = useAuth()
+  const [user, setUser] = useState<User | null>(null)
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(user => {
+      setUser(user)
+    })
+
+    return () => unsubscribe()
+  }, [])
+
+  const logout = async () => {
+    try {
+      await signOut(auth)
+    } catch (error) {
+      alert('Ошибка при выходе')
+    }
+  }
 
   return (
     <header className="flex justify-between bg-zinc-600 h-20">
@@ -16,11 +31,11 @@ const Header = () => {
         </Link>
       </div>
       <div className=" flex justify-end text-white px-10 items-center">
-        {isAuth ? (
+        {user ? (
           <nav>
             <NavLink to="/favorites">Избранное</NavLink>
             <NavLink to="/history">История</NavLink>
-            <button onClick={() => dispatch(removeUser())}>Выход</button>
+            <button onClick={logout}>Logout</button>
           </nav>
         ) : (
           <nav>
