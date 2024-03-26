@@ -1,14 +1,23 @@
-import { Login } from '../components/Login'
-import React from 'react'
+import { auth } from '../utils/firebase'
+import Form from '../components/Form'
+import { signInWithEmailAndPassword } from 'firebase/auth'
 import { Link } from 'react-router-dom'
 
-const LoginPage: React.FC = () => {
+const LoginPage = () => {
+  const handleSubmit = async (email: string, password: string) => {
+    try {
+      await signInWithEmailAndPassword(auth, email, password)
+    } catch (error) {
+      alert('Error logging in:')
+    }
+  }
+
   return (
     <div>
-      <h1>Login</h1>
-      <Login />
+      <h2>Login</h2>
+      <Form handleSubmit={handleSubmit} />
       <p>
-        Or <Link to="/register">register</Link>
+        Dont have an account? <Link to="/register">Sign in</Link>
       </p>
     </div>
   )

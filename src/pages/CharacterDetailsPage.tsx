@@ -1,6 +1,8 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import { useGetCharacterByIdQuery } from '../store/rickApi'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHeart } from '@fortawesome/free-solid-svg-icons'
 
 const CharacterDetailsPage: React.FC = () => {
   const { id } = useParams<{ id: string }>()
@@ -26,6 +28,7 @@ const CharacterDetailsPage: React.FC = () => {
       <p>Status: {character?.status}</p>
       <p>Species: {character?.species}</p>
       <p>Location: {character?.location?.name}</p>
+      <FontAwesomeIcon icon={faHeart} size="xs" className=" absolute top-1 right-1 size-7 cursor-pointer" />
       {/* Добавим кнопку для добавления/удаления из избранного здесь */}
     </div>
   )
