@@ -1,4 +1,4 @@
-import CharacterCard from '../characterCard/CharacterCard'
+import CharacterCard from './CharacterCard'
 
 type Character = {
   id: number

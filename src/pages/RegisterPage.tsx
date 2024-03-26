@@ -1,4 +1,4 @@
-import { Register } from '../../components/register/Register'
+import { Register } from '../components/Register'
 import { Link } from 'react-router-dom'
 
 const RegisterPage = () => {

@@ -1,8 +1,8 @@
 import { Link, NavLink } from 'react-router-dom'
-import { useAuth } from '../../hooks/useAuth'
-import { removeUser } from '../../store/slices/userSlice'
-import { useAppDispatch } from '../../hooks/reduxHooks'
-import logo from '../../assets/images/logo.png'
+import { useAuth } from '../hooks/useAuth'
+import { removeUser } from '../store/slices/userSlice'
+import { useAppDispatch } from '../hooks/reduxHooks'
+import logo from '../assets/images/logo.png'
 
 const Header = () => {
   const dispatch = useAppDispatch()
