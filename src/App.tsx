@@ -8,8 +8,27 @@ import HistoryPage from './pages/HistoryPage'
 import ErrorPage from './pages/ErrorPage'
 import SearchPage from './pages/SearchPage'
 import CharacterDetailsPage from './pages/CharacterDetailsPage'
+import { onAuthStateChanged } from '@firebase/auth'
+import { useEffect } from 'react'
+import { auth } from './utils/firebase'
+import { useDispatch } from 'react-redux'
+import { setUser } from './store/slices/userSlice'
 
 function App() {
+  const dispatch = useDispatch()
+  useEffect(() => {
+    onAuthStateChanged(auth, async user => {
+      if (user) {
+        dispatch(
+          setUser({
+            email: user.email,
+            id: user.uid,
+            token: user.refreshToken,
+          }),
+        )
+      }
+    })
+  }, [])
   return (
     <Layout>
       <Routes>

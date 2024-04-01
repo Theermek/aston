@@ -1,8 +1,7 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import { useGetCharacterByIdQuery } from '../store/rickApi'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart } from '@fortawesome/free-solid-svg-icons'
+import FavoriteButton from '../components/FavoriteButton'
 
 const CharacterDetailsPage: React.FC = () => {
   const { id } = useParams<{ id: string }>()
@@ -22,14 +21,17 @@ const CharacterDetailsPage: React.FC = () => {
   }
 
   return (
-    <div>
-      <h2>{character?.name}</h2>
-      <img src={character?.image} alt={character?.name} />
-      <p>Status: {character?.status}</p>
-      <p>Species: {character?.species}</p>
-      <p>Location: {character?.location?.name}</p>
-      <FontAwesomeIcon icon={faHeart} size="xs" className=" absolute top-1 right-1 size-7 cursor-pointer" />
-      {/* Добавим кнопку для добавления/удаления из избранного здесь */}
+    <div className=" flex justify-center mt-40">
+      <div className="relative">
+        <img src={character?.image} alt={character?.name} />
+        <FavoriteButton characterId={character.id} />
+      </div>
+      <div className=" mx-10 my-10">
+        <h2>{character?.name}</h2>
+        <p>Status: {character?.status}</p>
+        <p>Species: {character?.species}</p>
+        <p>Location: {character?.location?.name}</p>
+      </div>
     </div>
   )
 }
