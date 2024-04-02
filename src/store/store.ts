@@ -2,11 +2,13 @@ import { configureStore } from '@reduxjs/toolkit'
 import { rickApi } from './rickApi'
 import { userSlice } from './slices/userSlice'
 import { favoriteSlice } from './slices/favoriteSlice'
+import { historySlice } from './slices/historySlice'
 
 export const store = configureStore({
   reducer: {
     user: userSlice.reducer,
     favorites: favoriteSlice.reducer,
+    history: historySlice.reducer,
     [rickApi.reducerPath]: rickApi.reducer,
   },
   middleware: getDefaultMiddleware => getDefaultMiddleware().concat(rickApi.middleware),

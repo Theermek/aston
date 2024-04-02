@@ -1,4 +1,3 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
 import FavoriteButton from './FavoriteButton'
 
@@ -10,7 +9,7 @@ type CharacterCardProps = {
   }
 }
 
-const CharacterCard: React.FC<CharacterCardProps> = ({ character }) => {
+const CharacterCard = ({ character }: CharacterCardProps) => {
   return (
     <li className=" bg-lime-200 flex flex-col w-64 h-80 rounded-md border-y-8 border-lime-500 m-5 relative">
       <Link to={`/characters/${character.id}`}>

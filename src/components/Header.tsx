@@ -32,13 +32,13 @@ const Header = () => {
       </div>
       <div className=" flex justify-end text-white px-10 items-center">
         {user ? (
-          <nav>
+          <nav className=" flex gap-5">
             <NavLink to="/favorites">Избранное</NavLink>
             <NavLink to="/history">История</NavLink>
             <button onClick={logout}>Logout</button>
           </nav>
         ) : (
-          <nav>
+          <nav className=" flex gap-5">
             <NavLink to="/login">Вход</NavLink>
             <NavLink to="/register">Регистрация</NavLink>
           </nav>
