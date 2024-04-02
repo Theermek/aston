@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { db } from '../utils/firebase'
 import { collection, getDocs } from 'firebase/firestore'
 import { useGetCharactersByIdQuery } from '../store/rickApi'
@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { selectFavoriteIds, selectUser } from '../store/selector'
 import { setFavorite } from '../store/slices/favoriteSlice'
 
-const FavoritesPage: React.FC = () => {
+const FavoritesPage = () => {
   const currentUser = useSelector(selectUser)
   const dispatch = useDispatch()
   if (!currentUser) {

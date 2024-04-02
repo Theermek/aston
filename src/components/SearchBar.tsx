@@ -2,6 +2,9 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { addHistory } from '../utils/history'
+import { useSelector } from 'react-redux'
+import { selectUser } from '../store/selector'
 
 type SearchBarProps = {
   value: string
@@ -11,6 +14,7 @@ type SearchBarProps = {
 const SearchBar = ({ value }: SearchBarProps) => {
   const [inputValue, setInputValue] = useState(value)
   const navigate = useNavigate()
+  const user = useSelector(selectUser)
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value)
@@ -30,7 +34,9 @@ const SearchBar = ({ value }: SearchBarProps) => {
     if (inputValue.trim() === '') {
       navigate('/search')
     } else {
-      navigate(`/search?name=${encodeURIComponent(inputValue)}`)
+      const searchUrl = `/search?name=${encodeURIComponent(inputValue)}`
+      navigate(searchUrl)
+      addHistory(searchUrl, user)
     }
   }
   return (

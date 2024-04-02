@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { isFavorite, addFavorite, removeFavorite } from '../utils/favorites'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
@@ -10,7 +10,7 @@ type FavoriteButtonProps = {
   characterId: number
 }
 
-const FavoriteButton: React.FC<FavoriteButtonProps> = ({ characterId }) => {
+const FavoriteButton = ({ characterId }: FavoriteButtonProps) => {
   const [isFavorited, setIsFavorited] = useState(false)
   const user = useSelector(selectUser)
   const dispatch = useDispatch()

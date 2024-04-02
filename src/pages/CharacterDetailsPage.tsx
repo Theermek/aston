@@ -1,9 +1,8 @@
-import React from 'react'
 import { useParams } from 'react-router-dom'
 import { useGetCharacterByIdQuery } from '../store/rickApi'
 import FavoriteButton from '../components/FavoriteButton'
 
-const CharacterDetailsPage: React.FC = () => {
+const CharacterDetailsPage = () => {
   const { id } = useParams<{ id: string }>()
   const {
     data: character,
