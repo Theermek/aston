@@ -1,24 +1,19 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
-interface Character {
+type Character = {
   id: number
   name: string
   status: string
   species: string
   type: string
   gender: string
-  origin: {
-    name: string
-    url: string
-  }
-  location: {
-    name: string
-    url: string
-  }
   image: string
-  episode: string[]
   url: string
-  created: string
+}
+
+type Suggest = {
+  id: number
+  name: string
 }
 
 export const rickApi = createApi({
@@ -40,6 +35,16 @@ export const rickApi = createApi({
         return Array.isArray(response) ? response : [response]
       },
     }),
+    getSuggests: builder.query<Suggest[], string>({
+      query: searchInput => `character?name=${searchInput}`,
+      transformResponse: (response): Suggest[] => {
+        const data = response as { results: { id: number; name: string }[] }
+        return data.results.map(result => ({
+          id: result.id,
+          name: result.name,
+        }))
+      },
+    }),
   }),
 })
 
@@ -48,4 +53,5 @@ export const {
   useGetFilteredCharactersByNameQuery,
   useGetCharacterByIdQuery,
   useGetCharactersByIdQuery,
+  useGetSuggestsQuery,
 } = rickApi
