@@ -6,6 +6,7 @@ import './index.scss'
 import { BrowserRouter } from 'react-router-dom'
 import React from 'react'
 import './utils/firebase'
+import ErrorBoundary from './components/ErrorBoundaries'
 
 const container = document.getElementById('root')
 
@@ -16,7 +17,9 @@ if (container) {
     <React.StrictMode>
       <BrowserRouter>
         <Provider store={store}>
-          <App />
+          <ErrorBoundary>
+            <App />
+          </ErrorBoundary>
         </Provider>
       </BrowserRouter>
     </React.StrictMode>,
