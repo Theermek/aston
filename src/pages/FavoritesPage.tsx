@@ -6,12 +6,14 @@ import CharacterCard from '../components/CharacterCard'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectFavoriteIds, selectUser } from '../store/selector'
 import { setFavorite } from '../store/slices/favoriteSlice'
+import { useNavigate } from 'react-router-dom'
 
 const FavoritesPage = () => {
   const currentUser = useSelector(selectUser)
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   if (!currentUser) {
-    throw new Error('Current user is not defined')
+    navigate('/login')
   }
   const fetchFavoriteIds = async () => {
     try {

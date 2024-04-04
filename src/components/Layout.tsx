@@ -1,10 +1,16 @@
+import { Outlet } from 'react-router-dom'
 import Header from './Header'
+import { Suspense } from 'react'
 
-const Layout = ({ children }: { children: React.ReactNode }) => {
+const Layout = () => {
   return (
     <div>
       <Header />
-      <main>{children}</main>
+      <main>
+        <Suspense fallback={<p>Loading...</p>}>
+          <Outlet />
+        </Suspense>
+      </main>
     </div>
   )
 }
