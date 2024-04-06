@@ -1,7 +1,5 @@
-import { getDocs, collection } from 'firebase/firestore'
 import { useEffect } from 'react'
-import { db } from '../utils/firebase'
-import { removeHistory } from '../utils/history'
+import { fetchHistoryUrls, removeHistory } from '../utils/history'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectHistoryUrls, selectUser } from '../store/selector'
 import { removeFromHistory, setHistory } from '../store/slices/historySlice'
@@ -14,26 +12,15 @@ const HistoryPage = () => {
     throw new Error('Current user is not defined')
   }
 
-  const fetchHistoryUrls = async () => {
-    try {
-      const historyUrlsSnapshot = await getDocs(collection(db, `users/${user.id}/history`))
-      const urls: string[] = []
-      historyUrlsSnapshot.forEach(doc => {
-        urls.push(doc.data().url)
-      })
-      if (urls.length) {
-        return dispatch(setHistory(urls))
-      }
-      return []
-    } catch (error) {
-      alert('Error fetching favorites')
+  useEffect(() => {
+    const loadHistory = async () => {
+      const urls = await fetchHistoryUrls(user.id)
+      dispatch(setHistory(urls))
     }
-  }
+    loadHistory()
+  }, [user, dispatch])
 
   const currentUrl = useSelector(selectHistoryUrls)
-  useEffect(() => {
-    fetchHistoryUrls()
-  }, [user, dispatch])
 
   const onDelete = async (url: string) => {
     await removeHistory(url, user)

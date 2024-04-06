@@ -29,7 +29,7 @@ const Header = () => {
   return (
     <header className="flex justify-between bg-zinc-600 dark:bg-zinc-800 h-20">
       <div className="flex justify-start items-center">
-        <Link to="/homepage">
+        <Link to="/">
           <img className=" w-52 pl-7" src={logo} alt="Logo" />
         </Link>
       </div>

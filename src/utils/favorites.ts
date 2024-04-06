@@ -1,4 +1,4 @@
-import { doc, setDoc, deleteDoc, getDoc } from 'firebase/firestore'
+import { doc, setDoc, deleteDoc, getDoc, getDocs, collection } from 'firebase/firestore'
 import { db } from './firebase'
 
 interface User {
@@ -24,5 +24,14 @@ export const isFavorite = async (id: number, user: User): Promise<boolean | unde
     const docSnap = await getDoc(favoriteRef)
     return docSnap.exists()
   }
-  return undefined
+}
+
+export const fetchFavoriteIds = async (userId: string): Promise<number[]> => {
+  try {
+    const favoriteIdsSnapshot = await getDocs(collection(db, `users/${userId}/favorites`))
+    return favoriteIdsSnapshot.docs.map(doc => doc.data().id)
+  } catch (error) {
+    alert(error)
+    return []
+  }
 }
