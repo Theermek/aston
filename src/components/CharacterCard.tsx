@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import FavoriteButton from './FavoriteButton'
+import PropTypes from 'prop-types'
 
 type CharacterCardProps = {
   character: {
@@ -19,6 +20,14 @@ const CharacterCard = ({ character }: CharacterCardProps) => {
       <FavoriteButton characterId={character.id} />
     </li>
   )
+}
+
+CharacterCard.propTypes = {
+  character: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+  }).isRequired,
 }
 
 export default CharacterCard

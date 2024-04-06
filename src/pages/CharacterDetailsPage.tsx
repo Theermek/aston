@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom'
 import { useGetCharacterByIdQuery } from '../store/rickApi'
 import FavoriteButton from '../components/FavoriteButton'
+import PropTypes from 'prop-types'
 
 const CharacterDetailsPage = () => {
   const { id } = useParams<{ id: string }>()
@@ -33,6 +34,19 @@ const CharacterDetailsPage = () => {
       </div>
     </div>
   )
+}
+
+CharacterDetailsPage.propTypes = {
+  character: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    status: PropTypes.string.isRequired,
+    species: PropTypes.string.isRequired,
+    location: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+    }).isRequired,
+  }),
 }
 
 export default CharacterDetailsPage

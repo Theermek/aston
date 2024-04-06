@@ -33,7 +33,9 @@ const FavoriteButton = ({ characterId }: FavoriteButtonProps) => {
       setIsFavorited(true)
     }
   }
-
+  if (!user.id) {
+    return null
+  }
   return (
     <FontAwesomeIcon
       icon={faHeart}
