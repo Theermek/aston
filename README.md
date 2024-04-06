@@ -25,7 +25,7 @@
 - [x] Есть разделение на [умные](https://github.com/Theermek/aston/blob/main/src/pages/FavoritesPage.tsx) и [глупые](https://github.com/Theermek/aston/blob/main/src/components/Suggests.tsx) компоненты
 - [x] Есть рендеринг [списков](https://github.com/Theermek/aston/blob/main/src/components/CharacterList.tsx)
 - [x] Реализована хотя бы одна [форма](https://github.com/Theermek/aston/blob/main/src/components/Form.tsx)
-- [x] Есть применение [Контекст API](src/context/theme.ts)
+- [x] Есть применение [Контекст API](https://github.com/Theermek/aston/blob/main/src/context/theme.tsx)
 - [x] Есть применение [предохранителя](https://github.com/Theermek/aston/blob/main/src/components/ErrorBoundaries.tsx)
 - [x] Есть хотя бы один кастомный хук: [useDebounce](https://github.com/Theermek/aston/blob/main/src/hooks/debounce.ts),
 - [x] Хотя бы несколько компонентов используют PropTypes: [CharacterList](https://github.com/Theermek/aston/blob/main/src/components/CharacterList.tsx), [CharacterCard](https://github.com/Theermek/aston/blob/main/src/components/CharacterCard.tsx), [CharacterDetailsPage](https://github.com/Theermek/aston/blob/main/src/pages/CharacterDetailsPage.tsx)
