@@ -35,5 +35,7 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'no-unused-expressions': 'error',
     'react/jsx-no-useless-fragment': 'error',
+    'no-empty-function': 'off',
+    '@typescript-eslint/no-empty-function': 'off',
   },
 }

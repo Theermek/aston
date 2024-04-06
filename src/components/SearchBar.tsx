@@ -42,6 +42,9 @@ const SearchBar = ({ value }: SearchBarProps) => {
     } else {
       const searchUrl = `/search?name=${encodeURIComponent(inputValue)}`
       navigate(searchUrl)
+      if (!user.id) {
+        return
+      }
       addHistory(searchUrl, user)
     }
   }
@@ -69,6 +72,7 @@ const SearchBar = ({ value }: SearchBarProps) => {
           value={inputValue}
           onChange={handleChange}
           onKeyDown={handleKeyPress}
+          onFocus={handleChange}
         />
         <FontAwesomeIcon
           className="absolute top-5 right-1 cursor-pointer text-gray-200"

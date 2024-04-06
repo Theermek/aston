@@ -46,7 +46,6 @@ const HistoryPage = () => {
       <ul>
         {!currentUrl.length ? <p>Нет истории поиска</p> : null}
         {currentUrl.map(url => {
-          // Извлекаем часть URL после "search?name="
           const name = url.split('=')[1]
           return (
             <li className="text-2xl flex justify-between gap-7" key={url}>

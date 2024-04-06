@@ -14,7 +14,6 @@ const useAuth = () => {
           setUser({
             email: user.email,
             id: user.uid,
-            token: user.refreshToken,
           }),
         )
       }
