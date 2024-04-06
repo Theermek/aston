@@ -17,7 +17,9 @@ importedListenerMiddleware.startListening({
   matcher: isAnyOf(setUser),
   effect: async (action: PayloadAction<MyPayloadType>, listenerApi) => {
     const { id } = action.payload
-
+    if (!id) {
+      return
+    }
     try {
       const favoriteIdsSnapshot = await getDocs(collection(db, `users/${id}/favorites`))
       const favoriteIds = favoriteIdsSnapshot.docs.map(doc => doc.data().id)

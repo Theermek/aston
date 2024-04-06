@@ -20,8 +20,11 @@ const FavoriteButton = ({ characterId }: FavoriteButtonProps) => {
       const favorite = await isFavorite(characterId, user)
       setIsFavorited(favorite || false)
     }
+    if (!user.id) {
+      return
+    }
     fetchIsFavorite()
-  }, [characterId])
+  }, [characterId, user.id])
 
   const handleToggleFavorite = async () => {
     if (isFavorited) {
@@ -36,6 +39,7 @@ const FavoriteButton = ({ characterId }: FavoriteButtonProps) => {
   if (!user.id) {
     return null
   }
+
   return (
     <FontAwesomeIcon
       icon={faHeart}

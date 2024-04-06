@@ -4,7 +4,6 @@ import { db } from './firebase'
 interface User {
   id: string
 }
-// Добавление элемента в избранное
 export const addFavorite = async (id: number, user: User) => {
   if (user) {
     const favoriteRef = doc(db, `users/${user.id}/favorites/${id}`)
@@ -12,7 +11,6 @@ export const addFavorite = async (id: number, user: User) => {
   }
 }
 
-// Удаление элемента из избранного
 export const removeFavorite = async (id: number, user: User) => {
   if (user) {
     const favoriteRef = doc(db, `users/${user.id}/favorites/${id}`)
@@ -20,7 +18,6 @@ export const removeFavorite = async (id: number, user: User) => {
   }
 }
 
-// Проверка, является ли элемент избранным
 export const isFavorite = async (id: number, user: User): Promise<boolean | undefined> => {
   if (user) {
     const favoriteRef = doc(db, `users/${user.id}/favorites/${id}`)

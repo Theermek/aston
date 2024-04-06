@@ -1,11 +1,14 @@
 import { Link, NavLink, useNavigate } from 'react-router-dom'
-import { User, signOut } from 'firebase/auth'
+import { User } from 'firebase/auth'
 import { auth } from '../utils/firebase'
 import { useEffect, useState } from 'react'
 import logo from '../assets/images/logo.png'
 import ThemeButton from './ThemeButton'
+import { logout } from '../utils/authService'
+import { useDispatch } from 'react-redux'
 
 const Header = () => {
+  const dispatch = useDispatch()
   const [user, setUser] = useState<User | null>(null)
   const navigate = useNavigate()
 
@@ -17,13 +20,10 @@ const Header = () => {
     return () => unsubscribe()
   }, [])
 
-  const logout = async () => {
-    try {
-      await signOut(auth)
+  const onLogout = () => {
+    logout(dispatch).then(() => {
       navigate('/login')
-    } catch (error) {
-      alert('Ошибка при выходе')
-    }
+    })
   }
 
   return (
@@ -38,7 +38,7 @@ const Header = () => {
           <nav className=" flex gap-5">
             <NavLink to="/favorites">Избранное</NavLink>
             <NavLink to="/history">История</NavLink>
-            <button onClick={logout}>Logout</button>
+            <button onClick={onLogout}>Logout</button>
             <ThemeButton />
           </nav>
         ) : (
