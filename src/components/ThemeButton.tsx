@@ -1,7 +1,8 @@
-import { useThemeContext } from '../context/theme'
+import { useContext } from 'react'
+import { ThemeContext } from '../context/theme'
 
 const ThemeButton = () => {
-  const { changeThemeMode, themeMode } = useThemeContext()
+  const { changeThemeMode, themeMode } = useContext(ThemeContext)
 
   return (
     <label className=" px-10 inline-flex items-center cursor-pointer">

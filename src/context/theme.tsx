@@ -1,10 +1,9 @@
-import { createContext, useContext, useMemo, useState } from 'react'
+import { createContext, useMemo, useState } from 'react'
 
 export const ThemeContext = createContext({
   themeMode: 'light',
+  changeThemeMode: () => {},
 })
-
-export const useThemeContext = () => useContext(ThemeContext)
 
 export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const [themeMode, setThemeMode] = useState('light')
