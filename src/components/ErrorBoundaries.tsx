@@ -24,7 +24,7 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
       return (
         <div>
           <p>Что-то пошло не так.</p>
-          <Link to={`/homepage`}>
+          <Link to={`/`}>
             <button>Вернуться на главную</button>
           </Link>
         </div>

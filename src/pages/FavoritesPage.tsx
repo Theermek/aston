@@ -1,41 +1,29 @@
 import { useEffect, useState } from 'react'
-import { db } from '../utils/firebase'
-import { collection, getDocs } from 'firebase/firestore'
 import { useGetCharactersByIdQuery } from '../store/rickApi'
 import CharacterCard from '../components/CharacterCard'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectFavoriteIds, selectUser } from '../store/selector'
 import { setFavorite } from '../store/slices/favoriteSlice'
-import { useNavigate } from 'react-router-dom'
+import { fetchFavoriteIds } from '../utils/favorites'
 
 const FavoritesPage = () => {
   const [Loading, setLoading] = useState(true)
   const currentUser = useSelector(selectUser)
   const dispatch = useDispatch()
-  const navigate = useNavigate()
-  if (!currentUser) {
-    navigate('/login')
-  }
+
   useEffect(() => {
-    const fetchFavoriteIds = async () => {
+    const loadFavorites = async () => {
       setLoading(true)
       try {
-        const favoriteIdsSnapshot = await getDocs(collection(db, `users/${currentUser.id}/favorites`))
-        const ids: number[] = []
-        favoriteIdsSnapshot.forEach(doc => {
-          ids.push(doc.data().id)
-        })
-        if (ids.length) {
-          return dispatch(setFavorite(ids))
-        }
-        return []
+        const ids = await fetchFavoriteIds(currentUser.id)
+        dispatch(setFavorite(ids))
       } catch (error) {
         alert('Error fetching favorites')
       } finally {
         setLoading(false)
       }
     }
-    fetchFavoriteIds()
+    loadFavorites()
   }, [currentUser, dispatch])
 
   const favoriteIds = useSelector(selectFavoriteIds)

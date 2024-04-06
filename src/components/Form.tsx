@@ -21,7 +21,7 @@ const Form = ({ handleSubmit }: FormProps) => {
   const onSubmitForm = async (data: FormValues) => {
     try {
       await handleSubmit(data.email, data.password)
-      navigate('/homepage')
+      navigate('/')
     } catch (error) {
       navigate('/login')
       alert(error)
