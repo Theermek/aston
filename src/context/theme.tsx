@@ -2,8 +2,6 @@ import { createContext, useContext, useMemo, useState } from 'react'
 
 export const ThemeContext = createContext({
   themeMode: 'light',
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  changeThemeMode: () => {},
 })
 
 export const useThemeContext = () => useContext(ThemeContext)

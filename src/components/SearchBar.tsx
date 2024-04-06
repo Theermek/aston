@@ -7,7 +7,6 @@ import { useSelector } from 'react-redux'
 import { selectUser } from '../store/selector'
 import Suggests from './Suggests'
 import useDebounce from '../hooks/debounce'
-import { set } from 'firebase/database'
 
 type SearchBarProps = {
   value: string
