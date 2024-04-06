@@ -1,4 +1,4 @@
-![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/Theermek/aston/aston.yaml)
+[![Deploy Aston project to GitHub Pages](https://github.com/Theermek/aston/actions/workflows/aston.yaml/badge.svg?branch=main)](https://github.com/Theermek/aston/actions/workflows/aston.yaml)
 
 # Rick and Morty
 
