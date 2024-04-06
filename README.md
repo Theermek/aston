@@ -1,4 +1,4 @@
-[![Deploy Aston project to GitHub Pages](https://github.com/Theermek/aston/actions/workflows/aston.yaml/badge.svg?branch=main)](https://github.com/Theermek/aston/actions/workflows/aston.yaml)
+[![Aston CI/CD](https://github.com/Theermek/aston/actions/workflows/aston.yaml/badge.svg?branch=main)](https://github.com/Theermek/aston/actions/workflows/aston.yaml)
 
 # Rick and Morty
 
