@@ -1,26 +1,31 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+
+// Определяем тип для payload action setUser
+interface SetUserPayload {
+  email: string
+  id: string
+}
 
 const initialState = {
-  email: null,
-  token: null,
-  id: null,
+  email: '',
+  id: '',
 }
 
 export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    setUser(state, action) {
+    setUser(state, action: PayloadAction<SetUserPayload>) {
       state.email = action.payload.email
-      state.token = action.payload.token
       state.id = action.payload.id
     },
     removeUser(state) {
-      state.email = null
-      state.token = null
-      state.id = null
+      state.email = ''
+      state.id = ''
     },
   },
 })
 
 export const { setUser, removeUser } = userSlice.actions
+
+export default userSlice.reducer
