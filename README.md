@@ -1,3 +1,5 @@
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/Theermek/aston/aston.yaml)
+
 # Rick and Morty
 
 - API: [Rick and Morty API](https://rickandmortyapi.com/)
