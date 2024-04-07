@@ -1,5 +1,5 @@
 import { auth } from '../utils/firebase'
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth'
+import { User, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth'
 import { Dispatch } from 'redux'
 import { clearUser, setUser } from '../store/slices/userSlice'
 
@@ -39,4 +39,12 @@ export const logout = async (dispatch: Dispatch) => {
   } catch (error) {
     alert('Ошибка при выходе')
   }
+}
+
+export const subscribeToAuthChanges = (setUser: (user: User | null) => void) => {
+  const unsubscribe = auth.onAuthStateChanged(user => {
+    setUser(user)
+  })
+
+  return unsubscribe
 }

@@ -1,10 +1,9 @@
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { User } from 'firebase/auth'
-import { auth } from '../utils/firebase'
 import { useEffect, useState } from 'react'
 import logo from '../assets/images/logo.png'
 import ThemeButton from './ThemeButton'
-import { logout } from '../utils/authService'
+import { logout, subscribeToAuthChanges } from '../utils/authService'
 import { useDispatch } from 'react-redux'
 
 const Header = () => {
@@ -13,10 +12,7 @@ const Header = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(user => {
-      setUser(user)
-    })
-
+    const unsubscribe = subscribeToAuthChanges(setUser)
     return () => unsubscribe()
   }, [])
 
@@ -24,6 +20,9 @@ const Header = () => {
     logout(dispatch).then(() => {
       navigate('/login')
     })
+  }
+  if (user === null) {
+    return null
   }
 
   return (
