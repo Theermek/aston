@@ -1,31 +1,8 @@
-import { useEffect } from 'react'
-import { fetchHistoryUrls, removeHistory } from '../utils/history'
-import { useDispatch, useSelector } from 'react-redux'
-import { selectHistoryUrls, selectUser } from '../store/selector'
-import { removeFromHistory, setHistory } from '../store/slices/historySlice'
 import { Link } from 'react-router-dom'
+import useHistoryData from '../hooks/history'
 
 const HistoryPage = () => {
-  const user = useSelector(selectUser)
-  const dispatch = useDispatch()
-  if (!user) {
-    throw new Error('Current user is not defined')
-  }
-
-  useEffect(() => {
-    const loadHistory = async () => {
-      const urls = await fetchHistoryUrls(user.id)
-      dispatch(setHistory(urls))
-    }
-    loadHistory()
-  }, [user, dispatch])
-
-  const currentUrl = useSelector(selectHistoryUrls)
-
-  const onDelete = async (url: string) => {
-    await removeHistory(url, user)
-    dispatch(removeFromHistory(url))
-  }
+  const { currentUrl, onDelete } = useHistoryData()
 
   return (
     <div className=" flex flex-col items-center gap-5 ">

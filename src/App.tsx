@@ -1,7 +1,7 @@
 import { lazy } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Layout from './components/Layout'
-import useAuth from './hooks/auth'
+import { useInitialize } from './hooks/auth'
 import PrivateRoute from './router/PrivateRoute'
 
 const HomePage = lazy(() => import('./pages/HomePage'))
@@ -14,7 +14,11 @@ const SearchPage = lazy(() => import('./pages/SearchPage'))
 const CharacterDetailsPage = lazy(() => import('./pages/CharacterDetailsPage'))
 
 function App() {
-  useAuth()
+  const initializeSuccess = useInitialize()
+
+  if (!initializeSuccess) {
+    return <p> Loading ........... </p>
+  }
 
   return (
     <Routes>

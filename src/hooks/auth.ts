@@ -1,11 +1,14 @@
 import { useEffect } from 'react'
-import { onAuthStateChanged } from '@firebase/auth'
-import { useDispatch } from 'react-redux'
-import { setUser } from '../store/slices/userSlice'
+import { onAuthStateChanged } from 'firebase/auth'
+import { useDispatch, useSelector } from 'react-redux'
+import { initialize } from '../store/slices/authSlice'
+import { setUser, removeUser } from '../store/slices/userSlice'
 import { auth } from '../utils/firebase'
+import { selectInitializeSuccess } from '../store/authSelector'
 
-const useAuth = () => {
+export const useInitialize = () => {
   const dispatch = useDispatch()
+  const initializeSuccess = useSelector(selectInitializeSuccess)
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async user => {
@@ -16,13 +19,15 @@ const useAuth = () => {
             id: user.uid,
           }),
         )
+      } else {
+        dispatch(removeUser())
       }
+      dispatch(initialize({ initializeSuccess: true }))
     })
-
     return () => unsubscribe()
-  }, [dispatch])
+  }, [dispatch, initializeSuccess])
 
-  return null
+  return initializeSuccess
 }
 
-export default useAuth
+export default useInitialize
