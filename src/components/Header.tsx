@@ -1,14 +1,13 @@
-// Header.js
 import { Link } from 'react-router-dom'
 import logo from '../assets/images/logo.png'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectUser } from '../store/selector'
-import GuestLinks from './guest'
+import GuestLinks from './GuestLinks'
 import { logout, subscribeToAuthChanges } from '../utils/authService'
 import { useEffect } from 'react'
 import { setUser } from '../store/slices/userSlice'
-import UserLinks from './User'
+import UserLinks from './UserLinks'
 
 const Header = () => {
   const navigate = useNavigate()
